@@ -1,0 +1,260 @@
+{
+	"info": {
+		"_postman_id": "09f98368-51f3-46f9-a770-081dcf24ef0b",
+		"name": "Superbot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26272680"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"jwt\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"michael@email.com\",\n    \"password\": \"supersecretpassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Documents",
+			"item": [
+				{
+					"name": "List Documents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/documents?tag=faq",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "faq"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Documents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"documents\": [{\n        \"pageContent\": \"Superbet este o companie de pariuri.\",\n        \"metadata\": {\n            \"source\": \"https://superbet.ro\",\n            \"tag\": \"general\"\n        }\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/documents",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Documents",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ids\": [\"5acbf806-aad4-45f6-96cc-ffcbf5cf2e24\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/documents",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"documents"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Chat RAG",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"question\": \"Cine este Superbet?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/chat/chat-rag",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"chat",
+								"chat-rag"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:9000"
+		},
+		{
+			"key": "jwt",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ3NDQwMWFjLThlMTgtNDkzMC05YzM3LWRkNzMyZWRiOTMzYyIsIm5hbWUiOiJNaWNoYWVsIFNjb3R0IiwiZW1haWwiOiJtaWNoYWVsQGVtYWlsLmNvbSIsImlhdCI6MTYxNDUxODIzOSwiZXhwIjoxNjE0NTE5MTM5fQ.aybxWo7tCATpU8jbBjgYUEg5LYP_gPdfWDi_9kE01iM"
+		},
+		{
+			"key": "hash",
+			"value": "79euqsq7et9o6zcy86fas"
+		}
+	]
+}
