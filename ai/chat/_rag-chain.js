@@ -32,6 +32,7 @@ const chain = async (question, answerSize) => {
 
   const priorityDocs = await priorityRetriever.getRelevantDocuments(question);
   const docs = await docsRetriever.getRelevantDocuments(question);
+  console.log(docs, priorityDocs);
 
   const priorityContextString = formatDocumentsAsStringsWithDates(priorityDocs);
   const documentsContextString = formatDocumentsAsString(docs);

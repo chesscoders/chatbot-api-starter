@@ -1,6 +1,6 @@
-import { error } from '@functions';
+import { error } from 'express-goodies/functions/index.js';
 import { docWithTimestamp, generateIds } from '../../ai/functions/index.js';
-import vectorStore from 'ai/vector-store/_vector-store.js';
+import vectorStore from '../../ai/vector-store/_vector-store.js';
 
 export const addDocuments = async (documents) => {
   /**

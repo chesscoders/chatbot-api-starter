@@ -24,7 +24,7 @@ async function saveDocsToJson({ filepath, source, tag, title }) {
   const jsonContent = JSON.stringify(transformedDocs, null, 2);
 
   fs.writeFileSync(
-    `/Volumes/Code/projects/super-bot/superbot-api/data/output_${tag}.json`,
+    `/Volumes/Code/projects/super-bot/chatbot-starter-api/data/output_${tag}.json`,
     jsonContent,
     'utf8'
   );
@@ -34,7 +34,7 @@ async function saveDocsToJson({ filepath, source, tag, title }) {
 
 // Run the function
 saveDocsToJson({
-  filepath: '/Volumes/Code/projects/super-bot/superbot-api/data/joc-responsabil.pdf',
+  filepath: '/Volumes/Code/projects/super-bot/chatbot-starter-api/data/joc-responsabil.pdf',
   source: 'https://superbet.ro/wiki/joc-responsabil',
   tag: 'joc-responsabil',
   title: 'Joc Responsabil',

@@ -1,3 +1,3 @@
-# SuperBot API
+# ChatBot Starter API
 
-API for SuperBot.
+API for ChatBot Starter.
