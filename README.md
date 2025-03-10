@@ -6,10 +6,11 @@ Starter for ChatBot APIs, created using the [Express Mongo API starter](https://
 
 1. Go to [MongoDB Cloud](https://www.mongodb.com/products/platform/cloud) and sign in using the credentials from [Mega](https://mega.nz/).
 2. Create a new project.
-3. Having your new project selected, click "Browse collections".
-4. Create a new database and a new collection. (name examples: test for database and knowlegde_base for collection)
-5. In your new collection, go to Atlas Search.
-6. Create Search Index, Type: Atlas Search, Index Name: default, Configuration: JSON Editor and paste the following object:
+3. Inside your new project, create a cluster.
+4. Having your new cluster selected, click "Browse collections" in the same panel as the selected cluster.
+5. Create a new database and a new collection. (name examples: `test` for database and `knowlegde_base` for collection)
+6. In your new collection, go to Atlas Search.
+7. Create Search Index, select the newly created database, Type: Atlas Search, Index Name: default, Configuration: JSON Editor and paste the following object:
 
 ```
 {
@@ -28,7 +29,7 @@ Starter for ChatBot APIs, created using the [Express Mongo API starter](https://
 }
 ```
 
-7. Create another Search Index, Type: Vector Search, Index Name: vector_index, Configuration: JSON Editor and paste the following object:
+8. Create another Search Index, Type: Vector Search, Index Name: vector_index, Configuration: JSON Editor and paste the following object:
 
 ```
 {
